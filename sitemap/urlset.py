@@ -78,11 +78,13 @@ class UrlSet(object):
             if tag == 'url' and element_data:
                 try:
                     e = UrlSetElement(**element_data)
+                    element_data.clear()
                     yield e
                 except ValueError:
                     element_data = {}
                     continue
-            elif tag in ['loc', 'lastmod', 'changefreq', 'priority']:
+            elif tag in ['loc', 'lastmod', 'changefreq', 'priority',
+                         'title', 'pageclass']:
                 element_data[tag] = elem.text
         del context
         del schema

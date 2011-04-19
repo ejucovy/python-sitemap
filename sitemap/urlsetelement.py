@@ -10,6 +10,9 @@ class UrlSetElement(object):
     lastmod = property(lambda self:self._lastmod)
     changefreq = property(lambda self:self._changefreq)
     priority = property(lambda self:self._priority)
+    
+    title = property(lambda self:self._title)
+    pageclass = property(lambda self: self._pageclass)
 
     def __init__(self, **kwargs):
         """ Init an urlset element. This object is immutable """
@@ -17,6 +20,9 @@ class UrlSetElement(object):
         self._set_lastmod(kwargs)
         self._set_changefreq(kwargs)
         self._set_priority(kwargs)
+
+        self._title = kwargs.get('title')
+        self._pageclass = kwargs.get('pageclass')
         
     def _set_loc(self, args):
         """
